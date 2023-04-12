@@ -32,7 +32,6 @@ class LinkedList {
         if(head.head == value) {
             Node temp = head;
             head = head.tail;
-            //return temp;
         }
 
         prev = node;
@@ -66,7 +65,6 @@ class LinkedList {
     }
 
     void print() {
-        String str = "";
         Node node = head;
 
         while(node != null) {
