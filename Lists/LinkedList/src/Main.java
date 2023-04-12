@@ -104,5 +104,6 @@ public class Main {
         list.delete(27);
         list.print();
         list.find(27);
+
     }
 }
