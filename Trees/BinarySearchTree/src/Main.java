@@ -39,6 +39,23 @@ class BinarySearchTree {
         }
     }
 
+    public void insertArrayIntoBST(int[] nums) {
+        root = sortedArrayToBST(nums);
+    }
+
+    public Node sortedArrayToBST(int[] nums) {
+        if(nums.length == 0) return null; // base case
+
+        int midpoint = (int) Math.floor((float)nums.length / 2); // round down to the nearest integer for the midpoint
+
+        Node node = new Node(nums[midpoint]); // create new node from midpoint
+
+        node.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, midpoint)); // copy first half of array and use this for the next recursive call
+        node.right = sortedArrayToBST(Arrays.copyOfRange(nums, midpoint+1, nums.length)); // copy second half of array and use this for the next recursive call
+
+        return node;
+    }
+
     void delete(int value) {
         root = deleteNode(value, root);
     }
@@ -250,22 +267,7 @@ class BinarySearchTree {
         }
     }
 
-    public void insertArrayIntoBST(int[] nums) {
-        root = sortedArrayToBST(nums);
-    }
 
-    public Node sortedArrayToBST(int[] nums) {
-        if(nums.length == 0) return null; // base case
-
-        int midpoint = (int) Math.floor((float)nums.length / 2); // round down to the nearest integer for the midpoint
-
-        Node node = new Node(nums[midpoint]); // create new node from midpoint
-
-        node.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, midpoint)); // copy first half of array and use this for the next recursive call
-        node.right = sortedArrayToBST(Arrays.copyOfRange(nums, midpoint+1, nums.length)); // copy second half of array and use this for the next recursive call
-
-        return node;
-    }
 }
 
 class Node {
