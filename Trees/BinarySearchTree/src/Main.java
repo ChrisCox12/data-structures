@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class BinarySearchTree {
     Node root;
@@ -248,6 +249,23 @@ class BinarySearchTree {
             prettyPrint(node.left, str, true);
         }
     }
+
+    public void insertArrayIntoBST(int[] nums) {
+        root = sortedArrayToBST(nums);
+    }
+
+    public Node sortedArrayToBST(int[] nums) {
+        if(nums.length == 0) return null; // base case
+
+        int midpoint = (int) Math.floor((float)nums.length / 2); // round down to the nearest integer for the midpoint
+
+        Node node = new Node(nums[midpoint]); // create new node from midpoint
+
+        node.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, midpoint)); // copy first half of array and use this for the next recursive call
+        node.right = sortedArrayToBST(Arrays.copyOfRange(nums, midpoint+1, nums.length)); // copy second half of array and use this for the next recursive call
+
+        return node;
+    }
 }
 
 class Node {
@@ -263,7 +281,7 @@ class Node {
 }
 public class Main {
     public static void main(String[] args) {
-        BinarySearchTree bst = new BinarySearchTree();
+        /*BinarySearchTree bst = new BinarySearchTree();
         bst.insert(7);
         bst.insert(11);
         bst.insert(12);
@@ -294,6 +312,9 @@ public class Main {
         bst.heightOfNode(5);
         bst.heightOfTree();
         bst.heightOfNode(4);
-        bst.heightOfNode(3);
+        bst.heightOfNode(3);*/
+        BinarySearchTree bst2 = new BinarySearchTree();
+        bst2.insertArrayIntoBST(new int[]{-10, -3, 0, 5, 9});
+        bst2.print();
     }
 }
